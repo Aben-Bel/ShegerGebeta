@@ -1,33 +1,49 @@
 package com.abenbel.sheger_gebeta
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
+import com.abenbel.sheger_gebeta.fragments.FavoriteFragment
+import com.abenbel.sheger_gebeta.fragments.HomeFragment
+import com.abenbel.sheger_gebeta.fragments.SearchFragment
+
 
 class MainActivity : AppCompatActivity() {
-    private var layoutManager : RecyclerView.LayoutManager?=null
-    private var adapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>?=null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        layoutManager = LinearLayoutManager(this);
-        val recyclerView:RecyclerView = findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = layoutManager
+        val homeFragment = HomeFragment()
+        val favoriteFragment = FavoriteFragment()
+        val searchFragment = SearchFragment()
+        
+        makeCurrentFragment(homeFragment)
 
-        adapter = RecyclerViewAdapter()
-        recyclerView.adapter = adapter;
+        val bottom_navigation : BottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.ic_home -> makeCurrentFragment(homeFragment)
+                R.id.ic_favorite -> makeCurrentFragment(favoriteFragment)
+                R.id.ic_search -> makeCurrentFragment(searchFragment)
+            }
+            true
+        }
+
 //        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
 //        val data: Array<String> = arrayOf("1","2","3");
 //        recyclerView.adapter = CustomeAdapter(data);
 
+    }
+
+
+    private fun makeCurrentFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply{
+            replace(R.id.fl_wrapper, fragment)
+            commit();
+        }
     }
 }
 

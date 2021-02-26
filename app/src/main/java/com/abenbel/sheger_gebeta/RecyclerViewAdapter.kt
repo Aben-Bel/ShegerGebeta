@@ -26,6 +26,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         p0.textTitle.text = itemTitles[p1]
         p0.textDesc.text = itemDetails[p1]
         p0.image.setImageResource(itemImages[0])
+        p0.avatar.setImageResource(itemImages[0])
     }
 
     override fun getItemCount(): Int {
@@ -33,12 +34,14 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     }
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var avatar : ImageView
         var image : ImageView
         var textTitle : TextView
         var textDesc : TextView
         var favoriteBtn : Button
 
         init {
+            avatar = itemView.findViewById(R.id.avatar)
             image = itemView.findViewById(R.id.image_view);
             textTitle = itemView.findViewById(R.id.text_title);
             textDesc = itemView.findViewById(R.id.text_desc);
