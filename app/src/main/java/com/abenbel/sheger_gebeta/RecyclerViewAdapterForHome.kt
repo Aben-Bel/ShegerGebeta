@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapterForHome : RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>() {
 
     private val itemTitles = arrayOf("Restuarant 1", "Restaurant 2")
     private val itemDetails = arrayOf("textDesc1","textDesc2");
@@ -17,12 +17,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v: View = LayoutInflater.from(p0.context)
-            .inflate(R.layout.recyclerview_model, p0, false)
+            .inflate(R.layout.recyclerview_model_home, p0, false)
         return ViewHolder(v);
     }
 
 
-    override fun onBindViewHolder(p0: RecyclerViewAdapter.ViewHolder, p1: Int) {
+    override fun onBindViewHolder(p0: RecyclerViewAdapterForHome.ViewHolder, p1: Int) {
         p0.textTitle.text = itemTitles[p1]
         p0.textDesc.text = itemDetails[p1]
         p0.image.setImageResource(itemImages[0])

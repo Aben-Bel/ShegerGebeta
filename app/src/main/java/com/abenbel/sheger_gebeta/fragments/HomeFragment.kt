@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.abenbel.sheger_gebeta.R
-import com.abenbel.sheger_gebeta.RecyclerViewAdapter
+import com.abenbel.sheger_gebeta.RecyclerViewAdapterForHome
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
 
     private var layoutManager : RecyclerView.LayoutManager?=null
-    private var adapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>?=null
+    private var adapterForHome : RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +49,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(activity);
-        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_home)
         recyclerView.layoutManager = layoutManager
 
-        adapter = RecyclerViewAdapter()
-        recyclerView.adapter = adapter;
+        adapterForHome = RecyclerViewAdapterForHome()
+        recyclerView.adapter = adapterForHome;
 
     }
 

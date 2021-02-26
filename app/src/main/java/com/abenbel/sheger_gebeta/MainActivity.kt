@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-//        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+//        val recyclerView: RecyclerView = findViewById(R.id.recycler_view_home)
 //        val data: Array<String> = arrayOf("1","2","3");
 //        recyclerView.adapter = CustomeAdapter(data);
 

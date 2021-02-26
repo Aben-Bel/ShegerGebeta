@@ -2,10 +2,15 @@ package com.abenbel.sheger_gebeta.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.SearchView
 import com.abenbel.sheger_gebeta.R
+import com.abenbel.sheger_gebeta.RecyclerViewAdapterForFavorite
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +27,10 @@ class SearchFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var layoutManager : RecyclerView.LayoutManager?=null
+    private var adapterForSearch : RecyclerView.Adapter<RecyclerViewAdapterForFavorite.ViewHolder>?=null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,6 +45,22 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val search = view.findViewById<SearchView>(R.id.searchView)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_favorite)
+        val restuarant = arrayOf("One", "Two", "Three", "Four")
+
+        layoutManager = LinearLayoutManager(activity);
+
+        recyclerView.layoutManager = layoutManager
+
+        adapterForSearch = RecyclerViewAdapterForFavorite()
+        recyclerView.adapter = adapterForSearch;
+
     }
 
     companion object {

@@ -2,10 +2,14 @@ package com.abenbel.sheger_gebeta.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.abenbel.sheger_gebeta.R
+import com.abenbel.sheger_gebeta.RecyclerViewAdapterForFavorite
+import com.abenbel.sheger_gebeta.RecyclerViewAdapterForHome
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +26,10 @@ class FavoriteFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var layoutManager : RecyclerView.LayoutManager?=null
+    private var adapterForHome : RecyclerView.Adapter<RecyclerViewAdapterForFavorite.ViewHolder>?=null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,6 +44,17 @@ class FavoriteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        layoutManager = LinearLayoutManager(activity);
+        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_favorite)
+        recyclerView.layoutManager = layoutManager
+
+        adapterForHome = RecyclerViewAdapterForFavorite()
+        recyclerView.adapter = adapterForHome;
+
     }
 
     companion object {
