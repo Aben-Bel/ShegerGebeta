@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import com.abenbel.sheger_gebeta.R
 import com.abenbel.sheger_gebeta.RecyclerViewAdapterForFavorite
+import com.abenbel.sheger_gebeta.RecyclerViewAdapterForSearch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +29,12 @@ class SearchFragment : Fragment() {
     private var param2: String? = null
 
     private var layoutManager : RecyclerView.LayoutManager?=null
-    private var adapterForSearch : RecyclerView.Adapter<RecyclerViewAdapterForFavorite.ViewHolder>?=null
+    private var adapterForSearch : RecyclerView.Adapter<RecyclerViewAdapterForSearch.ViewHolder>?=null
+
+    private var favImages = intArrayOf(R.drawable.ic_launcher_background)
+    private var foodNames = arrayOf("Food 1", "Food 2", "Food 3", "Food 4", "Food 5")
+    private var restuarantNames = arrayOf("Restuarant 1", "Restuarant 2", "Restuarant 3", "Restuarant 4", "Restuarant 5")
+    private var prices = arrayOf("Price 1", "Price 2", "Price 3", "Price 4", "Price 5")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,15 +57,24 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val search = view.findViewById<SearchView>(R.id.searchView)
-        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_favorite)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_search)
         val restuarant = arrayOf("One", "Two", "Three", "Four")
 
         layoutManager = LinearLayoutManager(activity);
 
         recyclerView.layoutManager = layoutManager
 
-        adapterForSearch = RecyclerViewAdapterForFavorite()
+        adapterForSearch = RecyclerViewAdapterForSearch()
         recyclerView.adapter = adapterForSearch;
+
+//        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                search.clearFocus()
+//                if(names.contains(query)){
+//                    adapter.filter.filter()
+//                }
+//            }
+//        })
 
     }
 
@@ -83,3 +98,4 @@ class SearchFragment : Fragment() {
             }
     }
 }
+

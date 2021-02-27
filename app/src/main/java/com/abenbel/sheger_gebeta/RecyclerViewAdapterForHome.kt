@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -38,7 +39,7 @@ class RecyclerViewAdapterForHome : RecyclerView.Adapter<RecyclerViewAdapterForHo
         var image : ImageView
         var textTitle : TextView
         var textDesc : TextView
-        var favoriteBtn : Button
+        var favoriteBtn : ImageButton
 
         init {
             avatar = itemView.findViewById(R.id.avatar)
