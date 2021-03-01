@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.abenbel.sheger_gebeta.model.Food
+import com.squareup.picasso.Picasso
 
 
 class RecyclerViewAdapterForHome(private var foodList: List<Food>) : RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>() {
@@ -29,8 +30,9 @@ class RecyclerViewAdapterForHome(private var foodList: List<Food>) : RecyclerVie
         val item = foodList[p1];
         p0.textTitle.text = item.food_name
         p0.textDesc.text = item.place_name
-        p0.image.setImageResource(itemImages[0])
-        p0.avatar.setImageResource(itemImages[0])
+        val imageUrl = Constant.BASE_URL + item.image_dir
+        Picasso.get().load(imageUrl).into(p0.image);
+        Picasso.get().load(imageUrl).into(p0.avatar);
     }
 
     override fun getItemCount(): Int {
