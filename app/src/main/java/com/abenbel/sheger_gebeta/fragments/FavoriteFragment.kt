@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.abenbel.sheger_gebeta.R
 import com.abenbel.sheger_gebeta.RecyclerViewAdapterForFavorite
-import com.abenbel.sheger_gebeta.RecyclerViewAdapterForHome
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

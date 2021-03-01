@@ -4,11 +4,18 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.abenbel.sheger_gebeta.ApiHelper
 import com.abenbel.sheger_gebeta.R
 import com.abenbel.sheger_gebeta.RecyclerViewAdapterForHome
+import com.abenbel.sheger_gebeta.model.Food
+import com.abenbel.sheger_gebeta.model.FoodResult
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,8 +32,26 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private var layoutManager : RecyclerView.LayoutManager?=null
-    private var adapterForHome : RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>?=null
+
+    private var foodList = ArrayList<Food>()
+    lateinit var recyclerView: RecyclerView
+    lateinit var layoutManager : RecyclerView.LayoutManager
+    lateinit var adapter:RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>
+    private val callback = object: Callback<List<Food>> {
+        override fun onFailure(call: Call<List<Food>>?, t:Throwable?) {
+            Log.e("MainActivity on failure", "Problem calling API {${t?.message}}")
+            Log.e("main", t?.stackTraceToString())
+        }
+
+        override fun onResponse(call: Call<List<Food>>?, response: Response<List<Food>>?) {
+            response?.isSuccessful.let {
+                val resultList = FoodResult(response?.body() ?: emptyList())
+                Log.i("HomeFragement", resultList.entries.toString())
+                foodList.addAll(resultList.entries)
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +59,7 @@ class HomeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
+        ApiHelper.getFoods(callback);
     }
 
 
@@ -49,11 +74,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(activity);
-        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_home)
+        recyclerView = view.findViewById(R.id.recycler_view_home)
         recyclerView.layoutManager = layoutManager
 
-        adapterForHome = RecyclerViewAdapterForHome()
-        recyclerView.adapter = adapterForHome;
+        adapter = RecyclerViewAdapterForHome(foodList)
+        recyclerView.adapter = adapter;
 
     }
 
