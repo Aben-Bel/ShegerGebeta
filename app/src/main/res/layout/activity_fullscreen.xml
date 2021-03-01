@@ -16,13 +16,6 @@
         android:layout_marginTop="30dp"
         android:orientation="vertical">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            android:src="@drawable/ic_baseline_close_24"
-            android:tint="#5E5C5C" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -34,36 +27,37 @@
                 android:layout_margin="5dp">
 
                 <ImageView
-                    android:id="@+id/avatar"
+                    android:id="@+id/avatar_detail"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_launcher_background" />
 
                 <ImageView
                     android:id="@+id/circle_crop"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/cricle_crop" />
 
             </FrameLayout>
 
             <TextView
-                android:id="@+id/text_title"
+                android:id="@+id/text_title_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textStyle="bold"
                 android:text="Restuarant" />
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/image_view"
+            android:id="@+id/image_view_detail"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:scaleType="centerCrop"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <ImageButton
-            android:id="@+id/favorite_btn"
+            android:id="@+id/favorite_btn_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -74,10 +68,11 @@
             android:tint="#615D5D" />
 
         <TextView
-            android:id="@+id/text_desc"
+            android:id="@+id/text_desc_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:textStyle="bold"
             android:text="Description Goes here" />
     </LinearLayout>
 </FrameLayout>

@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view_home)
         recyclerView.layoutManager = layoutManager
 
-        adapter = RecyclerViewAdapterForHome(foodList)
+        adapter = RecyclerViewAdapterForHome(context, foodList)
         recyclerView.adapter = adapter;
 
     }
