@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.abenbel.sheger_gebeta.R
 import com.abenbel.sheger_gebeta.RecyclerViewAdapterForFavorite
 import com.abenbel.sheger_gebeta.database.AppDatabase
+import com.abenbel.sheger_gebeta.database.Food
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,8 +31,9 @@ class FavoriteFragment(var db: AppDatabase?) : Fragment() {
     private var param2: String? = null
 
     private var layoutManager : RecyclerView.LayoutManager?=null
-    private var adapterForHome : RecyclerView.Adapter<RecyclerViewAdapterForFavorite.ViewHolder>?=null
+    private var adapterForFavorite : RecyclerView.Adapter<RecyclerViewAdapterForFavorite.ViewHolder>?=null
 
+    private var foods : ArrayList<Food> = arrayListOf();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,9 +56,10 @@ class FavoriteFragment(var db: AppDatabase?) : Fragment() {
         layoutManager = LinearLayoutManager(activity);
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_favorite)
         recyclerView.layoutManager = layoutManager
-
-        adapterForHome = RecyclerViewAdapterForFavorite(db)
-        recyclerView.adapter = adapterForHome;
+        foods = arrayListOf();
+        foods.addAll(db!!.foodDao().getAll())
+        adapterForFavorite = RecyclerViewAdapterForFavorite(foods, db)
+        recyclerView.adapter = adapterForFavorite;
 
     }
 

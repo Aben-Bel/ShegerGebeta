@@ -4,12 +4,15 @@ package com.abenbel.sheger_gebeta
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import com.abenbel.sheger_gebeta.database.AppDatabase
 import com.abenbel.sheger_gebeta.model.Food
 import com.squareup.picasso.Picasso
@@ -52,13 +55,26 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
         }
 
         p0.favoriteBtn.setOnClickListener{
+            Log.i("TAG: ", "Added Food ${item.food_name}")
+            Toast.makeText(p0.card.context,"Added Food ${item.food_name}",LENGTH_LONG).show()
+
             item.favorite = true;
             var food = com.abenbel.sheger_gebeta.database.Food(item.food_name, item.price, item.place_name, item.gmap_link,item.image_dir,
                 item.favorite);
-            db!!.foodDao().insertFood(food)
+
+            var inDatabase : Boolean = false
+            db!!.foodDao().getAll().forEach{
+                if(it == food){
+                    inDatabase = true;
+                }
+            }
+            if (!inDatabase){
+                Log.i("TAG: ", "added again ");
+                db!!.foodDao().insertFood(food)
+            }else{
+                Log.i("TAG: ", "didn't again ");
+            }
         }
-
-
     }
 
     override fun getItemCount(): Int {

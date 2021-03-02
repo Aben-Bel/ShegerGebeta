@@ -10,7 +10,6 @@ interface FoodDAO {
     @Insert
     fun insertFood(food: Food)
 
-
     @Delete
     fun delete(food: Food)
 }

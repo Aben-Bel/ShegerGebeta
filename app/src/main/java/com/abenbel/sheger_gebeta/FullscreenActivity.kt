@@ -58,7 +58,7 @@ class FullscreenActivity : AppCompatActivity() {
             // the clickable content all together
             val spannableString = SpannableString(content)
             //only the word 'link' is clickable
-            spannableString.setSpan(clickableSpan, startIndex, endIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             //The following is to set the new text in the TextView
             //no styles for an already clicked link
             textView.setText(spannableString)
