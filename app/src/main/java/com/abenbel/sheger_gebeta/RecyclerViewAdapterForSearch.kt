@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.abenbel.sheger_gebeta.database.AppDatabase
 
-class RecyclerViewAdapterForSearch : RecyclerView.Adapter<RecyclerViewAdapterForSearch.ViewHolder>() {
+class RecyclerViewAdapterForSearch(db: AppDatabase?) : RecyclerView.Adapter<RecyclerViewAdapterForSearch.ViewHolder>() {
     private var favImages = intArrayOf(R.drawable.ic_launcher_background)
     private var foodNames = arrayOf("Food 1", "Food 2", "Food 3", "Food 4", "Food 5")
     private var restuarantNames = arrayOf("Restuarant 1", "Restuarant 2", "Restuarant 3", "Restuarant 4", "Restuarant 5")

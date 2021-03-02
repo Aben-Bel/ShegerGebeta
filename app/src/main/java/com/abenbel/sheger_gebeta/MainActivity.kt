@@ -4,21 +4,23 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
+import com.abenbel.sheger_gebeta.database.AppDatabase
 import com.abenbel.sheger_gebeta.fragments.FavoriteFragment
 import com.abenbel.sheger_gebeta.fragments.HomeFragment
 import com.abenbel.sheger_gebeta.fragments.SearchFragment
 
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val homeFragment = HomeFragment()
-        val favoriteFragment = FavoriteFragment()
-        val searchFragment = SearchFragment()
+        val db = AppDatabase.getFoodDatabase(this);
+
+
+        val homeFragment = HomeFragment(db)
+        val favoriteFragment = FavoriteFragment(db)
+        val searchFragment = SearchFragment(db)
         
         makeCurrentFragment(homeFragment)
 

@@ -3,8 +3,6 @@ package com.abenbel.sheger_gebeta
 
 import android.content.Context
 import android.content.Intent
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +10,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.abenbel.sheger_gebeta.database.AppDatabase
 import com.abenbel.sheger_gebeta.model.Food
 import com.squareup.picasso.Picasso
 
 
-class RecyclerViewAdapterForHome(val context: Context?, private var foodList: List<Food>) : RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>() {
+class RecyclerViewAdapterForHome(val context: Context?, private var foodList: List<Food>, val db: AppDatabase?) : RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>() {
 
     private val itemTitles = arrayOf("Restuarant 1", "Restaurant 2")
     private val itemDetails = arrayOf("textDesc1","textDesc2");
@@ -51,6 +50,15 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
             }
             context?.startActivity(intent)
         }
+
+        p0.favoriteBtn.setOnClickListener{
+            item.favorite = true;
+            var food = com.abenbel.sheger_gebeta.database.Food(item.food_name, item.price, item.place_name, item.gmap_link,item.image_dir,
+                item.favorite);
+            db!!.foodDao().insertFood(food)
+        }
+
+
     }
 
     override fun getItemCount(): Int {

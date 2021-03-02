@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textStyle="bold"
+            android:textColorLink="@color/light_blue_600"
             android:text="Description Goes here" />
     </LinearLayout>
 </FrameLayout>
