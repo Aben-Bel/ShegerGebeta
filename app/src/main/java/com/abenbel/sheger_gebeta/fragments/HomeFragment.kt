@@ -49,7 +49,7 @@ class HomeFragment(val db: AppDatabase?) : Fragment() {
         override fun onResponse(call: Call<List<Food>>?, response: Response<List<Food>>?) {
             response?.isSuccessful.let {
                 val resultList = FoodResult(response?.body() ?: emptyList())
-                Log.i("HomeFragement", resultList.entries.toString())
+//                Log.i("HomeFragement", resultList.entries.toString())
                 foodList.addAll(resultList.entries)
                 recyclerView.adapter?.notifyDataSetChanged()
             }

@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val homeFragment = HomeFragment(db)
         val favoriteFragment = FavoriteFragment(db)
-        val searchFragment = SearchFragment(db)
+        val searchFragment = SearchFragment()
         
         makeCurrentFragment(homeFragment)
 

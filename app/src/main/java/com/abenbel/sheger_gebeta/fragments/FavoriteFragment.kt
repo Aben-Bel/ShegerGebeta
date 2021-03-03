@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.abenbel.sheger_gebeta.R
 import com.abenbel.sheger_gebeta.RecyclerViewAdapterForFavorite
 import com.abenbel.sheger_gebeta.database.AppDatabase
@@ -51,6 +50,13 @@ class FavoriteFragment(var db: AppDatabase?) : Fragment() {
         return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        foods = arrayListOf();
+        foods.addAll(db!!.foodDao().getAll())
+        adapterForFavorite?.notifyDataSetChanged();
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(activity);
@@ -58,7 +64,7 @@ class FavoriteFragment(var db: AppDatabase?) : Fragment() {
         recyclerView.layoutManager = layoutManager
         foods = arrayListOf();
         foods.addAll(db!!.foodDao().getAll())
-        adapterForFavorite = RecyclerViewAdapterForFavorite(foods, db)
+        adapterForFavorite = RecyclerViewAdapterForFavorite(context, foods, db)
         recyclerView.adapter = adapterForFavorite;
 
     }

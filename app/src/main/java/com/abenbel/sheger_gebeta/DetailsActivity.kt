@@ -13,6 +13,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -22,7 +23,7 @@ import com.squareup.picasso.Picasso
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class FullscreenActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
     private lateinit var fullscreenContent: TextView
     private lateinit var fullscreenContentControls: LinearLayout
     private val hideHandler = Handler()
@@ -75,6 +76,11 @@ class FullscreenActivity : AppCompatActivity() {
         Picasso.get().load(imageUrl).into(avatar);
         Picasso.get().load(imageUrl).into(image);
 
+        val favBtn = findViewById<ImageButton>(R.id.favorite_btn)
+
+//        favBtn.setOnClickListener {
+//
+//        }
 
     }
 

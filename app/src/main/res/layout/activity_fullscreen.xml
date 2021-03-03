@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
     android:theme="@style/ThemeOverlay.ShegerGebeta.FullscreenContainer"
-    tools:context=".FullscreenActivity">
+    tools:context=".DetailsActivity">
 
 
     <LinearLayout

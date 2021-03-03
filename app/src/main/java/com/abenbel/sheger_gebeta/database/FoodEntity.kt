@@ -14,5 +14,5 @@ data class Food(
     @ColumnInfo(name = "favorite") val favorite : Boolean
 ){
     @PrimaryKey(autoGenerate = true)
-    var foodId: Int = 0
+    var foodId: Int =0
 }

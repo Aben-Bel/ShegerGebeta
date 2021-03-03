@@ -12,4 +12,6 @@ interface FoodDAO {
 
     @Delete
     fun delete(food: Food)
+
+
 }

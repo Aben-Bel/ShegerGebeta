@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShegerGebeta">
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".DetailsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/Theme.ShegerGebeta.Fullscreen"></activity>
