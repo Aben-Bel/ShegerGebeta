@@ -1,5 +1,6 @@
 package com.abenbel.sheger_gebeta
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment(db)
         val favoriteFragment = FavoriteFragment(db)
         val searchFragment = SearchFragment()
-        
+
+
         makeCurrentFragment(homeFragment)
 
         val bottom_navigation : BottomNavigationView = findViewById(R.id.bottom_navigation);

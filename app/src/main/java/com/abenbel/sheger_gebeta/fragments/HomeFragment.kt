@@ -1,6 +1,7 @@
 package com.abenbel.sheger_gebeta.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.abenbel.sheger_gebeta.ApiHelper
+import com.abenbel.sheger_gebeta.FirstScreen
 import com.abenbel.sheger_gebeta.R
 import com.abenbel.sheger_gebeta.RecyclerViewAdapterForHome
 import com.abenbel.sheger_gebeta.database.AppDatabase
@@ -40,6 +42,7 @@ class HomeFragment(val db: AppDatabase?) : Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var layoutManager : RecyclerView.LayoutManager
     lateinit var adapter:RecyclerView.Adapter<RecyclerViewAdapterForHome.ViewHolder>
+
     private val callback = object: Callback<List<Food>> {
         override fun onFailure(call: Call<List<Food>>?, t:Throwable?) {
             Log.e("MainActivity on failure", "Problem calling API {${t?.message}}")
@@ -62,6 +65,7 @@ class HomeFragment(val db: AppDatabase?) : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
         ApiHelper.getFoods(callback);
     }
 

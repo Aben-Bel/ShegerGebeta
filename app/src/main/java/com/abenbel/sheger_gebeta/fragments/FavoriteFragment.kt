@@ -66,7 +66,6 @@ class FavoriteFragment(var db: AppDatabase?) : Fragment() {
         foods.addAll(db!!.foodDao().getAll())
         adapterForFavorite = RecyclerViewAdapterForFavorite(context, foods, db)
         recyclerView.adapter = adapterForFavorite;
-
     }
 
 //    companion object {

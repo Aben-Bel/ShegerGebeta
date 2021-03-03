@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShegerGebeta">
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".DetailsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Details"
             android:theme="@style/Theme.ShegerGebeta.Fullscreen"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".FirstScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

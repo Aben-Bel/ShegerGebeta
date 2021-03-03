@@ -87,6 +87,5 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
         var textTitle : TextView = itemView.findViewById(R.id.text_title)
         var textDesc : TextView = itemView.findViewById(R.id.text_desc)
         var favoriteBtn : ImageButton = itemView.findViewById(R.id.favorite_btn)
-
     }
 }

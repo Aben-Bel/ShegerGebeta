@@ -38,10 +38,6 @@ class SearchFragment() : Fragment() {
     private var adapterForSearch : RecyclerViewAdapterForSearch?=null
     lateinit var recyclerview : RecyclerView
 
-    private var favImages = intArrayOf(R.drawable.ic_launcher_background)
-    private var foodNames = arrayOf("Food 1", "Food 2", "Food 3", "Food 4", "Food 5")
-    private var restuarantNames = arrayOf("Restuarant 1", "Restuarant 2", "Restuarant 3", "Restuarant 4", "Restuarant 5")
-    private var prices = arrayOf("Price 1", "Price 2", "Price 3", "Price 4", "Price 5")
 
     private var foods : ArrayList<Food> = arrayListOf()
     private var filtered : ArrayList<Food> = arrayListOf()

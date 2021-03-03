@@ -37,7 +37,7 @@
                 android:paddingTop="10dp"
                 android:paddingLeft="10dp"
                 android:textStyle="bold"
-                android:text="Food Name"
+                android:text="@string/food_name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="18dp"
-                android:text="Restaurant"
+                android:text="@string/restaurant"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </LinearLayout>
@@ -59,12 +59,12 @@
 
             <TextView
                 android:id="@+id/priceTextView"
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginTop="12dp"
                 android:paddingTop="10dp"
                 android:paddingLeft="10dp"
-                android:text="Price: NaN"
+                android:text="@string/price_nan"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <ImageButton

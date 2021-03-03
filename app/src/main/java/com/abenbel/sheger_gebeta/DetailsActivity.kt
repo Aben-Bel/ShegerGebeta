@@ -39,7 +39,7 @@ class DetailsActivity : AppCompatActivity() {
         val maps = intent.getStringExtra("maps");
 
         val mapTextView = findViewById<TextView>(R.id.map_link)
-        mapTextView.setText("Goole Maps: ${maps}" )
+        mapTextView.setText("Google Maps: ${maps}" )
         val descriptionView = findViewById<TextView>(R.id.text_desc_detail)
 
 

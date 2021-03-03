@@ -6,4 +6,14 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="restuarant">Restuarant</string>
+    <string name="description_goes_here">Description Goes here</string>
+    <string name="price_nan">Price: NaN</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="food_name">Food Name</string>
+    <string name="welcome">WELCOME</string>
+    <string name="to">TO</string>
+    <string name="shegerlogo">ShegerLogo</string>
+    <string name="sheger_gebeta">SHEGER GEBETA</string>
+    <string name="discover">DISCOVER</string>
 </resources>
