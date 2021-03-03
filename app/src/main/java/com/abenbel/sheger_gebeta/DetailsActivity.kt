@@ -13,10 +13,8 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+import com.abenbel.sheger_gebeta.database.AppDatabase
 import com.squareup.picasso.Picasso
 
 /**
@@ -34,55 +32,59 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fullscreen)
 
         val avatar = findViewById<ImageView>(R.id.avatar_detail);
-        val title = findViewById<TextView>(R.id.text_title_detail).apply{
+        val foodName = intent.getStringExtra("title")
+        val imageUrl = intent.getStringExtra("image");
+        val place = intent.getStringExtra("place");
+        val price = intent.getStringExtra("price");
+        val maps = intent.getStringExtra("maps");
+
+        val mapTextView = findViewById<TextView>(R.id.map_link)
+        mapTextView.setText("Goole Maps: ${maps}" )
+        val descriptionView = findViewById<TextView>(R.id.text_desc_detail)
+
+
+        val description : String = "Place: ${place}\n" +
+                "Food: ${foodName}\n" +
+                "Price: ${price}\n";
+        descriptionView.text = description
+
+
+        findViewById<TextView>(R.id.text_title_detail).apply{
             text = intent.getStringExtra("title");
         };
-
-        fun setMessageWithClickableLink(textView: TextView, content : String) {
-            //Clickable Span will help us to make clickable a text
-            val startIndex = content.indexOf("https:")
-            val endIndex = content.length;
-            val url : String = content.slice(startIndex..(endIndex-1));
-            Log.i("Debug:: ", url);
-            val clickableSpan  = object : ClickableSpan() {
-                override fun onClick(textView: View) {
-                    //To open the url in a browser
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse(url)
-                    startActivity(intent);
-                }
-                override fun updateDrawState(textPaint: TextPaint) {
-                    super.updateDrawState(textPaint)
-                }
-            }
-            //SpannableString will be created with the full content and
-            // the clickable content all together
-            val spannableString = SpannableString(content)
-            //only the word 'link' is clickable
-            spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            //The following is to set the new text in the TextView
-            //no styles for an already clicked link
-            textView.setText(spannableString)
-            textView.setMovementMethod(LinkMovementMethod.getInstance())
-            textView.setHighlightColor(Color.TRANSPARENT)
-        }
-        val desc = findViewById<TextView>(R.id.text_desc_detail)
-        setMessageWithClickableLink(desc,intent.getStringExtra("desc"));
-
         val image = findViewById<ImageView>(R.id.image_view_detail);
-
-        val imageUrl = intent.getStringExtra("image");
 
         Picasso.get().load(imageUrl).into(avatar);
         Picasso.get().load(imageUrl).into(image);
 
-        val favBtn = findViewById<ImageButton>(R.id.favorite_btn)
+        val db = AppDatabase.getFoodDatabase(this);
+        val favBtn = findViewById<ImageButton>(R.id.favorite_btn_detail)
 
-//        favBtn.setOnClickListener {
-//
-//        }
+        favBtn.setOnClickListener {
+            var inDatabase : Boolean = false
+
+            var food = com.abenbel.sheger_gebeta.database.Food(foodName, price, place, maps,imageUrl)
+            var dbFood : com.abenbel.sheger_gebeta.database.Food ? = null;
+            db!!.foodDao().getAll().forEach{
+                if(it == food){
+                    dbFood = it;
+                    inDatabase = true;
+                }
+            }
+            if (!inDatabase){
+                Toast.makeText(this,"Added Food ${foodName} to favorite",
+                    Toast.LENGTH_LONG
+                ).show()
+                db!!.foodDao().insertFood(food)
+            }else {
+                var status = db!!.foodDao().delete(dbFood!!);
+                Toast.makeText(this, "Deleted Food",Toast.LENGTH_SHORT).show();
+            }
+        }
 
     }
+
+
 
 
 

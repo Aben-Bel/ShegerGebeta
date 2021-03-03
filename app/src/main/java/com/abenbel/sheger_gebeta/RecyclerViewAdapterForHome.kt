@@ -30,10 +30,11 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
     override fun onBindViewHolder(p0: RecyclerViewAdapterForHome.ViewHolder, p1: Int) {
         val item = foodList[p1];
         p0.textTitle.text = item.food_name
-        p0.textDesc.text = "Place: ${item.place_name}\n" +
+        var text = "Place: ${item.place_name}\n" +
                             "Food: ${item.food_name}\n" +
                             "Price: ${item.price}\n" +
                             "Google Maps: ${item.gmap_link}"
+        p0.textDesc.text = text
         val imageUrl = Constant.BASE_URL + item.image_dir
         Picasso.get().load(imageUrl).into(p0.image);
         Picasso.get().load(imageUrl).into(p0.avatar);
@@ -43,7 +44,10 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
         p0.card.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java).apply {
                 putExtra("title", item.food_name);
-                putExtra("desc", p0.textDesc.text);
+                putExtra("place", item.place_name)
+                putExtra("price", item.price)
+                putExtra("maps", item.gmap_link)
+                putExtra("desc", text);
                 putExtra("image", imageUrl);
             }
             context?.startActivity(intent)
@@ -52,9 +56,7 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
         p0.favoriteBtn.setOnClickListener{
 //            Log.i("TAG: ", "Added Food ${item.food_name}")
 
-            item.favorite = true;
-            var food = com.abenbel.sheger_gebeta.database.Food(item.food_name, item.price, item.place_name, item.gmap_link,item.image_dir,
-                item.favorite);
+            var food = com.abenbel.sheger_gebeta.database.Food(item.food_name, item.price, item.place_name, item.gmap_link,imageUrl);
 
             var inDatabase : Boolean = false
             var dbFood : com.abenbel.sheger_gebeta.database.Food ? = null;
@@ -66,12 +68,10 @@ class RecyclerViewAdapterForHome(val context: Context?, private var foodList: Li
             }
             if (!inDatabase){
                 Toast.makeText(p0.card.context,"Added Food ${item.food_name} to favorite",LENGTH_LONG).show()
-                p0.favoriteBtn.setColorFilter(Color.argb(40, 40, 40, 40))
                 db!!.foodDao().insertFood(food)
             }else{
-                p0.favoriteBtn.setColorFilter(Color.argb(0, 255, 10, 10))
                 var status = db!!.foodDao().delete(dbFood!!);
-//                Toast.makeText(context, "deleted ${status} ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Deleted Food ",Toast.LENGTH_SHORT).show();
             }
         }
     }

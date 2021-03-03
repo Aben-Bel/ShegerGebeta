@@ -43,7 +43,9 @@ class RecyclerViewAdapterForSearch(val context: Context?, var foods: ArrayList<F
         p0.card.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java).apply {
                 putExtra("title", foods[p1].food_name);
-                putExtra("desc", desc);
+                putExtra("place", foods[p1].place_name)
+                putExtra("price", foods[p1].price)
+                putExtra("maps", foods[p1].gmap_link)
                 putExtra("image", imageUrl);
             }
             context?.startActivity(intent)

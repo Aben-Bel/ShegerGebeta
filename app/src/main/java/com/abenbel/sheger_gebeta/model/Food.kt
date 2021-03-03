@@ -5,5 +5,4 @@ data class Food(val food_name: String,
                 val place_name: String,
                 val location_description: String,
                 val gmap_link: String,
-                val image_dir: String,
-                var favorite: Boolean = false)
+                val image_dir: String)

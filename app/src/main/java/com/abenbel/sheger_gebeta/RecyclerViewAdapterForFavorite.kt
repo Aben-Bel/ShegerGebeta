@@ -23,8 +23,9 @@ class RecyclerViewAdapterForFavorite(val context: Context?, var foods: ArrayList
     }
 
     override fun onBindViewHolder(p0: RecyclerViewAdapterForFavorite.ViewHolder, p1: Int) {
-        val imageUrl = Constant.BASE_URL + foods[p1].imgDir
+        val imageUrl = foods[p1].imgDir
         Picasso.get().load(imageUrl).into(p0.favImage);
+
         p0.foodName.text = foods[p1].foodName
         p0.restuarantName.text = foods[p1].placeName
         p0.price.text = foods[p1].price
@@ -39,6 +40,9 @@ class RecyclerViewAdapterForFavorite(val context: Context?, var foods: ArrayList
             val intent = Intent(context, DetailsActivity::class.java).apply {
                 putExtra("title", foods[p1].foodName);
                 putExtra("desc", desc);
+                putExtra("place", foods[p1].placeName)
+                putExtra("price", foods[p1].price)
+                putExtra("maps", foods[p1].gMapLink)
                 putExtra("image", imageUrl);
             }
             context?.startActivity(intent)
